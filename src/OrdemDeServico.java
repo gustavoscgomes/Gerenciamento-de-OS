@@ -9,10 +9,21 @@ public class OrdemDeServico {
 
     private int idos;
     private String servico;
+    private String tecnico;
     private double valor;
     private int idcliente;
 
     private Date dataOs;
+    private String observacao;
+
+
+    public String getObservacao() {
+        return observacao;
+    }
+
+    public void setObservacao(String observacao) {
+        this.observacao = observacao;
+    }
 
     public Date getDataOs() {
         return dataOs;
@@ -36,6 +47,13 @@ public class OrdemDeServico {
 
     public void setServico(String servico) {
         this.servico = servico;
+    }
+
+    public String getTecnico() {
+        return tecnico;
+    }
+    public void setTecnico(String tecnico) {
+        this.tecnico = tecnico;
     }
 
     public double getValor() {

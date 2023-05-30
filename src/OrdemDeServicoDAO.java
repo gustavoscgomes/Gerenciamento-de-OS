@@ -21,7 +21,6 @@ public class OrdemDeServicoDAO {
 //            adicionar data atual
 //            stmt.setDate(3, new java.sql.Date(p.getDataDeNascimento().getTime()));
             if (os.getServico().isEmpty() ||
-                    os.getValor() == 0 ||
                     os.getIdcliente() == 0)  {
 
                 System.out.println("É necessário preencher todos os campos!!");

@@ -1,6 +1,4 @@
 import java.sql.Date;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -248,7 +246,7 @@ public class Main {
 
                             if (clienteBuscar != null) {
                                 System.out.println("Id: " +clienteBuscar.getIdCliente()+ "\nNome: " + clienteBuscar.getNomeCli() +
-                                        "\nCpf: " +clienteBuscar.getCpfCli()+
+                                        "\nCpf: " +Autenticacao.imprimeCPF(clienteBuscar.getCpfCli())+
                                         "\nFone: " +clienteBuscar.getFoneCli()+
                                         "\nEmail: " +clienteBuscar.getEmailCli()+
                                         "\nRua: " +clienteBuscar.getRuaCli()+
@@ -265,7 +263,7 @@ public class Main {
                             ArrayList<Cliente> clientes = clienteDAO.lista();
                             for (Cliente cliente : clientes) {
                                 System.out.println("Id: " +cliente.getIdCliente()+ "\nNome: " + cliente.getNomeCli() +
-                                        "\nCpf: " +cliente.getCpfCli()+
+                                        "\nCpf: " +Autenticacao.imprimeCPF(cliente.getCpfCli())+
                                         "\nFone: " +cliente.getFoneCli()+
                                         "\nEmail: " +cliente.getEmailCli()+
                                         "\nRua: " +cliente.getRuaCli()+
