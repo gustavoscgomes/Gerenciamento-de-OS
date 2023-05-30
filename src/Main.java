@@ -173,7 +173,7 @@ public class Main {
 
                         case 2:
 
-                            System.out.print("Digite o Id do Cliente: ");
+                            System.out.print("Digite o Id do Cliente*: ");
                             int clienteRemover = scanner.nextInt();
 
                             Cliente cRemover = new Cliente();
@@ -196,9 +196,9 @@ public class Main {
                                 System.out.println("CPF invalido. Digite novamente");
                                 cpf_cli = scanner.nextLine();
                             }
-                            System.out.print("Digite o novo telefone ");
+                            System.out.print("Digite o novo telefone: ");
                             String novo_telefone = scanner.nextLine();
-                            System.out.print("Digite o novo email ");
+                            System.out.print("Digite o novo email: ");
                             String novo_email = scanner.nextLine();
 
                             while (!(Autenticacao.autenticaEmail(novo_email))) {
@@ -238,14 +238,15 @@ public class Main {
                             break;
 
                         case 4:
-                            System.out.print("Digite o nome ");
+                            System.out.print("Digite o nome: ");
                             scanner.nextLine();
                             String nomeBuscar = scanner.nextLine();
 
                             Cliente clienteBuscar = clienteDAO.buscaPorNome(nomeBuscar);
 
                             if (clienteBuscar != null) {
-                                System.out.println("Id: " +clienteBuscar.getIdCliente()+ "\nNome: " + clienteBuscar.getNomeCli() +
+                                System.out.println("Id: " +clienteBuscar.getIdCliente()+
+                                        "\nNome: " + clienteBuscar.getNomeCli() +
                                         "\nCpf: " +Autenticacao.imprimeCPF(clienteBuscar.getCpfCli())+
                                         "\nFone: " +clienteBuscar.getFoneCli()+
                                         "\nEmail: " +clienteBuscar.getEmailCli()+
@@ -254,6 +255,7 @@ public class Main {
                                         "\nCidade: " +clienteBuscar.getCidadeCli()+
                                         "\nUf: " +clienteBuscar.getUfCli()+
                                         "\nData de nascimento: " +clienteBuscar.getDataNascimentoCli());
+                                System.out.println("");
                             } else {
                                 System.out.println("Pessoa não encontrada!");
                             }
@@ -271,6 +273,7 @@ public class Main {
                                         "\nCidade: " +cliente.getCidadeCli()+
                                         "\nUf: " +cliente.getUfCli()+
                                         "\nData de nascimento: " +cliente.getDataNascimentoCli());
+                                System.out.println("");
                             }
                             break;
                     }
@@ -289,7 +292,7 @@ public class Main {
 
                     System.out.print("Digite a opção desejada: ");
                     opcao = input.nextInt();
-                    //                input.nextLine();
+                    //            servico, tecnico, valor, observacao, status, idcliente
 
                     switch (opcao) {
 
@@ -298,16 +301,26 @@ public class Main {
                             System.out.print("Digite o Servico Instalaçao/Manutenção: ");
                             scanner.nextLine(); // para corrigir um erro do scanner
                             String servico = scanner.nextLine();
+                            System.out.print("Digite o tecnico que irá prestar o serviço: ");
+                            String tecnico = scanner.nextLine();
                             System.out.print("Digite O Valor: R$");
                             double valor = scanner.nextDouble();
+                            scanner.nextLine();
+                            System.out.print("Observação: ");
+                            String observacao = scanner.nextLine();
+                            System.out.print("Status: ");
+                            String status = scanner.nextLine();
                             System.out.print("Digite o Id do cliente: ");
                             int id_cliente = scanner.nextInt();
 
 
-
+                            //            servico, tecnico, valor, observacao, status, idcliente
                             OrdemDeServico os = new OrdemDeServico();
                             os.setServico(servico);
+                            os.setTecnico(tecnico);
                             os.setValor(valor);
+                            os.setObservacao(observacao);
+                            os.setStatus(status);
                             os.setIdcliente(id_cliente);
 
                             ordemDeServicoDAO.emite(os);
@@ -328,19 +341,33 @@ public class Main {
 
                             break;
 
+                        //            servico, tecnico, valor, observacao, status, idcliente
                         case 3:
                             System.out.print("Digite o id da Ordem De Serviço a ser atualizada: ");
                             int id_atualizar = scanner.nextInt();
-                            scanner.nextLine();
-                            System.out.print("Digite o tipo novo serviço manutenção/instalação: ");
+                            System.out.print("Digite o Servico Instalaçao/Manutenção: ");
+                            scanner.nextLine(); // para corrigir um erro do scanner
                             String novo_servico = scanner.nextLine();
-                            System.out.print("Digite o novo valor: R$ ");
+                            System.out.print("Digite o tecnico que irá prestar o serviço: ");
+                            String novo_tecnico = scanner.nextLine();
+                            System.out.print("Digite O Valor: R$");
                             double novo_valor = scanner.nextDouble();
+                            System.out.print("Observação: ");
+                            String nova_observacao = scanner.nextLine();
+                            System.out.print("Status: ");
+                            String novo_status = scanner.nextLine();
+                            System.out.print("Digite o Id do cliente: ");
+                            int novo_id_cliente = scanner.nextInt();
 
 
                             OrdemDeServico os_atualizar = new OrdemDeServico();
                             os_atualizar.setServico(novo_servico);
+                            os_atualizar.setTecnico(novo_tecnico);
                             os_atualizar.setValor(novo_valor);
+                            os_atualizar.setObservacao(nova_observacao);
+                            os_atualizar.setStatus(novo_status);
+                            os_atualizar.setIdcliente(novo_id_cliente);
+
 
 
                             os_atualizar.setIdos(id_atualizar);
@@ -348,6 +375,7 @@ public class Main {
                             ordemDeServicoDAO.atualiza(os_atualizar);
 
                             break;
+                        //            servico, tecnico, valor, observacao, status, idcliente
 
                         case 4:
                             System.out.print("Digite o id da Ordem De Serviço ");
@@ -358,18 +386,26 @@ public class Main {
 
                             if (osBuscar != null) {
                                 System.out.println("Id: " +osBuscar.getIdos()+ "\nServiço: " +osBuscar.getServico()+
-                                        "\nValor: RS" +osBuscar.getValor()+ "\nId do Cliente: " +osBuscar.getIdcliente()+
+                                        "\nTecnico: " +osBuscar.getTecnico()+ "\nValor: RS" +osBuscar.getValor()+
+                                        "\nObservação: " +osBuscar.getObservacao()+ "\nStatus: " +osBuscar.getStatus()+
+                                        "\nId do Cliente: " +osBuscar.getIdcliente()+
                                         "\nData: " +osBuscar.getDataOs());
                             } else {
                                 System.out.println("Os não encontrada!");
                             }
                             break;
+                        //            servico, tecnico, valor, observacao, status, idcliente
 
                         case 5:
                             ArrayList<OrdemDeServico> ordemDeServicos = ordemDeServicoDAO.lista();
                             for (OrdemDeServico ordemDeServico : ordemDeServicos) {
-                                System.out.println("Id: " +ordemDeServico.getIdos()+ "\nServiço: " +ordemDeServico.getServico()+
-                                        "\nValor: R$" +ordemDeServico.getValor()+ "\nId do cliente: " +ordemDeServico.getIdcliente()+
+                                System.out.println("Id: " +ordemDeServico.getIdos()+
+                                        "\nServiço: " +ordemDeServico.getServico()+
+                                        "\nTecnico: " +ordemDeServico.getTecnico()+
+                                        "\nValor: R$" +ordemDeServico.getValor()+
+                                        "\nObservação: " +ordemDeServico.getObservacao()+
+                                        "\nStatus: " +ordemDeServico.getStatus()+
+                                        "\nId do cliente: " +ordemDeServico.getIdcliente()+
                                         "\nData: " +ordemDeServico.getDataOs());
                                 System.out.println("");
                             }

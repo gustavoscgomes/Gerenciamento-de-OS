@@ -36,12 +36,10 @@ public class ClienteDAO {
             stmt.setDate(9, new Date(c.getDataNascimentoCli().getTime()));
 //            adicionar data atual
 //            stmt.setDate(3, new java.sql.Date(p.getDataDeNascimento().getTime()));
-            if (c.getNomeCli().isEmpty() ||
-                    c.getFoneCli().isEmpty() ||
-                    c.getRuaCli().isEmpty() ||
-                    c.getBairroCli().isEmpty() ||
-                    c.getCidadeCli().isEmpty() ||
-                    c.getUfCli().isEmpty()) {
+            if (c.getNomeCli().isEmpty() || c.getCpfCli().isEmpty() ||
+                    c.getFoneCli().isEmpty() || c.getEmailCli().isEmpty() ||
+                    c.getRuaCli().isEmpty() || c.getBairroCli().isEmpty() ||
+                    c.getCidadeCli().isEmpty() || c.getUfCli().isEmpty()) {
 
                 System.out.println("É necessário preencher todos os campos!!");
             } else {
@@ -133,12 +131,10 @@ public class ClienteDAO {
             stmt.setDate(9, new Date(c.getDataNascimentoCli().getTime()));
             stmt.setInt(10, c.getIdCliente());
 
-            if (c.getNomeCli().isEmpty() ||
-                    c.getFoneCli().isEmpty() ||
-                    c.getRuaCli().isEmpty() ||
-                    c.getBairroCli().isEmpty() ||
-                    c.getCidadeCli().isEmpty() ||
-                    c.getUfCli().isEmpty()) {
+            if (c.getNomeCli().isEmpty() || c.getCpfCli().isEmpty() ||
+                    c.getFoneCli().isEmpty() || c.getEmailCli().isEmpty() ||
+                    c.getRuaCli().isEmpty() || c.getBairroCli().isEmpty() ||
+                    c.getCidadeCli().isEmpty() || c.getUfCli().isEmpty()) {
 
                 System.out.println("É necessário preencher todos os campos!!");
             } else {

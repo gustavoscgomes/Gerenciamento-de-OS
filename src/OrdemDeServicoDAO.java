@@ -11,16 +11,18 @@ public class OrdemDeServicoDAO {
         this.connection = new Conexao().geraConexao();
     }
     public void emite(OrdemDeServico os) {
-        String sql = "INSERT INTO os(servico, valor, idcliente) VALUES(?,?,?)";
+        String sql = "INSERT INTO os(servico, tecnico, valor, observacao, status, idcliente) VALUES(?,?,?,?,?,?)";
         try {
             PreparedStatement stmt = connection.prepareStatement(sql);
             stmt.setString(1, os.getServico());
-            stmt.setDouble(2, os.getValor());
-            stmt.setInt(3, os.getIdcliente());
-//            stmt.setDate(3, new Date(p.getDataDeNascimento().getTime()));
-//            adicionar data atual
-//            stmt.setDate(3, new java.sql.Date(p.getDataDeNascimento().getTime()));
-            if (os.getServico().isEmpty() ||
+            stmt.setString(2, os.getTecnico());
+            stmt.setDouble(3, os.getValor());
+            stmt.setString(4, os.getObservacao());
+            stmt.setString(5, os.getStatus());
+            stmt.setInt(6, os.getIdcliente());
+
+            if (os.getServico().isEmpty() || os.getTecnico().isEmpty() ||
+                    os.getObservacao().isEmpty() || os.getStatus().isEmpty() ||
                     os.getIdcliente() == 0)  {
 
                 System.out.println("É necessário preencher todos os campos!!");
@@ -46,12 +48,16 @@ public class OrdemDeServicoDAO {
             ArrayList<OrdemDeServico> ordemDeServicos = new ArrayList<OrdemDeServico>();
             PreparedStatement stmt = connection.prepareStatement("SELECT * FROM os");
             ResultSet rs = stmt.executeQuery();
+//            servico, tecnico, valor, observacao, status, idcliente
             while (rs.next()) {
                 OrdemDeServico os = new OrdemDeServico();
                 os.setIdos(rs.getInt("idos"));
                 os.setDataOs(rs.getDate("data_os"));
                 os.setServico(rs.getString("servico"));
+                os.setTecnico(rs.getString("tecnico"));
                 os.setValor(rs.getDouble("valor"));
+                os.setObservacao(rs.getString("observacao"));
+                os.setStatus(rs.getString("status"));
                 os.setIdcliente(rs.getInt("idcliente"));
 
                 ordemDeServicos.add(os);
@@ -90,17 +96,21 @@ public class OrdemDeServicoDAO {
             throw new RuntimeException(e);
         }
     }
-
     public void atualiza(OrdemDeServico os) {
-        String sql = "UPDATE os SET  = ?, servico = ?, valor = ?, idcliente = ? WHERE idos = ?";
+        String sql = "UPDATE os SET  = ?, servico = ?, tecnico = ?, valor = ?, observacao = ?," +
+                "status = ?, idcliente = ? WHERE idos = ?";
         try {
             PreparedStatement stmt = connection.prepareStatement(sql);
             stmt.setString(1, os.getServico());
-            stmt.setDouble(2, os.getValor());
-            stmt.setInt(3, os.getIdcliente());
+            stmt.setString(2,os.getTecnico());
+            stmt.setDouble(3, os.getValor());
+            stmt.setString(4, os.getObservacao());
+            stmt.setString(5,os.getStatus());
+            stmt.setInt(6, os.getIdcliente());
 
-            if (os.getServico().isEmpty() ||
-            os.getValor() == 0 || os.getIdcliente() == 0) {
+            if (os.getServico().isEmpty() || os.getTecnico().isEmpty() ||
+                    os.getObservacao().isEmpty() || os.getStatus().isEmpty() ||
+                    os.getIdcliente() == 0)  {
 
                 System.out.println("É necessário preencher todos os campos!!");
             } else {

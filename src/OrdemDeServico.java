@@ -15,7 +15,15 @@ public class OrdemDeServico {
 
     private Date dataOs;
     private String observacao;
+    private String status;
 
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
 
     public String getObservacao() {
         return observacao;
