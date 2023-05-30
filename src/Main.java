@@ -202,6 +202,13 @@ public class Main {
                             String novo_telefone = scanner.nextLine();
                             System.out.print("Digite o novo email ");
                             String novo_email = scanner.nextLine();
+
+                            while (!(Autenticacao.autenticaEmail(novo_email))) {
+
+                                System.out.println("Erro! email invalido, digite novamente: ");
+                                novo_email = scanner.nextLine();
+                            }
+
                             System.out.print("Digite a nova rua: ");
                             String nova_rua = scanner.nextLine();
                             System.out.print("Digite o novo bairro: ");
@@ -240,8 +247,15 @@ public class Main {
                             Cliente clienteBuscar = clienteDAO.buscaPorNome(nomeBuscar);
 
                             if (clienteBuscar != null) {
-                                System.out.println("Nome: " + clienteBuscar.getNomeCli() +
-                                        ", Telefone: " + clienteBuscar.getFoneCli());
+                                System.out.println("Id: " +clienteBuscar.getIdCliente()+ "\nNome: " + clienteBuscar.getNomeCli() +
+                                        "\nCpf: " +clienteBuscar.getCpfCli()+
+                                        "\nFone: " +clienteBuscar.getFoneCli()+
+                                        "\nEmail: " +clienteBuscar.getEmailCli()+
+                                        "\nRua: " +clienteBuscar.getRuaCli()+
+                                        "\nBairro: " +clienteBuscar.getBairroCli()+
+                                        "\nCidade: " +clienteBuscar.getCidadeCli()+
+                                        "\nUf: " +clienteBuscar.getUfCli()+
+                                        "\nData de nascimento: " +clienteBuscar.getDataNascimentoCli());
                             } else {
                                 System.out.println("Pessoa não encontrada!");
                             }
@@ -250,14 +264,15 @@ public class Main {
                         case 5:
                             ArrayList<Cliente> clientes = clienteDAO.lista();
                             for (Cliente cliente : clientes) {
-                                System.out.println("Id " +cliente.getIdCliente()+ ", Nome " + cliente.getNomeCli() +
-                                        ", Cpf" +cliente.getCpfCli()+
-                                        ", Fone " +cliente.getFoneCli()+
-                                        ", Email " +cliente.getEmailCli()+
-                                        ", Rua " +cliente.getRuaCli()+
-                                        ", Bairro " +cliente.getBairroCli()+
-                                        ", Cidade " +cliente.getCidadeCli()+
-                                        ", Uf " +cliente.getUfCli());
+                                System.out.println("Id: " +cliente.getIdCliente()+ "\nNome: " + cliente.getNomeCli() +
+                                        "\nCpf: " +cliente.getCpfCli()+
+                                        "\nFone: " +cliente.getFoneCli()+
+                                        "\nEmail: " +cliente.getEmailCli()+
+                                        "\nRua: " +cliente.getRuaCli()+
+                                        "\nBairro: " +cliente.getBairroCli()+
+                                        "\nCidade: " +cliente.getCidadeCli()+
+                                        "\nUf: " +cliente.getUfCli()+
+                                        "\nData de nascimento: " +cliente.getDataNascimentoCli());
                             }
                             break;
                     }
@@ -344,9 +359,9 @@ public class Main {
                             OrdemDeServico osBuscar = ordemDeServicoDAO.buscaPorId(idBuscar);
 
                             if (osBuscar != null) {
-                                System.out.println("Id: " +osBuscar.getIdos()+ ", Serviço: " +osBuscar.getServico()+
-                                        ", Valor: RS" +osBuscar.getValor()+ ", Id do Cliente: " +osBuscar.getIdcliente()+
-                                        ", Data: " +osBuscar.getDataOs());
+                                System.out.println("Id: " +osBuscar.getIdos()+ "\nServiço: " +osBuscar.getServico()+
+                                        "\nValor: RS" +osBuscar.getValor()+ "\nId do Cliente: " +osBuscar.getIdcliente()+
+                                        "\nData: " +osBuscar.getDataOs());
                             } else {
                                 System.out.println("Os não encontrada!");
                             }
@@ -355,9 +370,10 @@ public class Main {
                         case 5:
                             ArrayList<OrdemDeServico> ordemDeServicos = ordemDeServicoDAO.lista();
                             for (OrdemDeServico ordemDeServico : ordemDeServicos) {
-                                System.out.println("Id: " +ordemDeServico.getIdos()+ ", Serviço: " +ordemDeServico.getServico()+
-                                        ", Valor: R$" +ordemDeServico.getValor()+ ", Id do cliente: " +ordemDeServico.getIdcliente()+
-                                        ", Data: " +ordemDeServico.getDataOs());
+                                System.out.println("Id: " +ordemDeServico.getIdos()+ "\nServiço: " +ordemDeServico.getServico()+
+                                        "\nValor: R$" +ordemDeServico.getValor()+ "\nId do cliente: " +ordemDeServico.getIdcliente()+
+                                        "\nData: " +ordemDeServico.getDataOs());
+                                System.out.println("");
                             }
                             break;
                     }

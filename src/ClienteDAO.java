@@ -187,6 +187,7 @@ public class ClienteDAO {
                 cliente.setBairroCli(rs.getString("bairro_cli"));
                 cliente.setCidadeCli(rs.getString("cidade_cli"));
                 cliente.setUfCli(rs.getString("uf_cli"));
+                cliente.setDataNascimentoCli(rs.getDate("data_nascimento_cli"));
             }
             rs.close();
             stmt.close();
