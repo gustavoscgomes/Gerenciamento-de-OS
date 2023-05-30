@@ -14,6 +14,7 @@ endereço.
 Emissão de Ordens de Serviço: Os usuários poderão emitir ordens de serviço para cada solicitação de serviço dos clientes.
 As ordens de serviço conterão informações como data e hora de emisão, serviço(instalação ou manutenção, valor, entre outras
 informações relevantes.
+
 Acompanhamento de Ordem de Serviço: O sistema permitirá que os usuários acompanhem o status das ordens de serviço, desde o momento
 em que são emitidas até o seu encerramento.
 
